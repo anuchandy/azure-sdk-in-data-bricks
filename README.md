@@ -3,7 +3,9 @@ Sample that uses Azure storage SDK v12 in azure-data-bricks
 
 
 Azure Data bricks vendor specific Jackson versions that collide with Jackson version that Azure Storage SDK v12 uses. Due to this a spark job based on a Java application jar file that uses storage v12 will fail with NoClassDefFoundError.
-To overcome this the Java application jar has to shade the dependencies. 
+To overcome this the Java application jar has to shade and relocate the dependencies. 
+
+Additionally Data bricks brings its own version of `azure-core` and other common Azure SDK packages. In this example, we relocate all `com.azure.*` packages to force newer version compatible with Azure Blob storage version.
 
 This sample demonstrate how to build such a shaded application that can run on Azure Data bricks.
 
@@ -13,7 +15,7 @@ Follow below steps to run the sample in Azure Data bricks:
 2. Update the `App.java` to have a valid blob storage account connection string, container name and account name
 3. Run mvn package to generate a shaded jar which produces `simple-app-1.0-SNAPSHOT-shaded.jar` in target directory
 4. From azure portal navigate to Azure Data bricks portal (assuming you already has a ADB account, e.g. ADB portal: https://westus2.azuredatabricks.net/)
-5. Create a cluster based on `Runtime: 6.1 (Scala 2.11, Spark 2.4.4)`
+5. Create a cluster based on `Runtime: 8.3 (Scala 2.12, Spark 3.1.2)`
 6. After cluster is ready, create a Job -> 
     1. Provide name for job 
     2. Choose task as "Set JAR", this will bring up option to upload the jar, point it to `simple-app-1.0-SNAPSHOT-shaded.jar` 
