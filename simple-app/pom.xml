@@ -101,14 +101,14 @@
                   <shadedPattern>ms.shaded.com.fasterxml.jackson</shadedPattern>
                 </relocation>
 
-                <!--In Databricks 10.2 you nay also need to relocate reactor netty packages-->
+                <!--In Databricks 10.2 you nay also need to relocate reactor netty classes-->
                 <relocation>
                   <pattern>io.netty</pattern>
                   <shadedPattern>ms.shaded.io.netty</shadedPattern>
                 </relocation>
                 <relocation>
-                  <pattern>reactor.netty</pattern>
-                  <shadedPattern>ms.shaded.reactor.netty</shadedPattern>
+                  <pattern>reactor</pattern>
+                  <shadedPattern>ms.shaded.reactor</shadedPattern>
                 </relocation>
 
                 <relocation>
