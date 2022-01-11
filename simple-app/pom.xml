@@ -100,6 +100,17 @@
                   <pattern>com.fasterxml.jackson</pattern>
                   <shadedPattern>ms.shaded.com.fasterxml.jackson</shadedPattern>
                 </relocation>
+
+                <!--In Databricks 10.2 you nay also need to relocate reactor netty classes-->
+                <relocation>
+                  <pattern>io.netty</pattern>
+                  <shadedPattern>ms.shaded.io.netty</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>reactor</pattern>
+                  <shadedPattern>ms.shaded.reactor</shadedPattern>
+                </relocation>
+
                 <relocation>
                   <!--Databricks brings its own version of azure-core which may be incompatible with blob storage version. Relocate azure-core so we don't collide with it-->
                   <pattern>com.azure</pattern>
